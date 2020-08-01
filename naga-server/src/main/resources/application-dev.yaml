@@ -1,0 +1,70 @@
+server:
+  port: 9042
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  http:
+    multipart:
+      enabled=false:
+  application:
+    name: naga-server
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://hadoop.canhui.wang:3306/naga_dev?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: "123456@@"
+
+custom:
+  hadoop:
+    rm:
+      uri: hadoop.canhui.wang:8088
+    nn:
+      uri: hadoop.canhui.wang:50070
+    conf: D:\\tools\\hadoop\\etc\\hadoop # hadoop配置文件所在的目录
+    proxyuser: hadoop # 执行hive操作的代理用户
+    hivemetastore: thrift://hadoop.canhui.wang:9083
+
+  task:
+    packageDir: /home/hadoop/naga/packages
+    azkaban:
+      server: http://hadoop.canhui.wang:8081
+      user: azkaban
+      password: azkaban
+      execHome: /usr/local/azkaban/azkaban-exec-server-0.1.0-SNAPSHOT
+    api:
+      server: localhost
+      port: "9042"
+
+  presto:
+    uri: jdbc:presto://hadoop.canhui.wang:9090/hive
+
+  hive:
+    uri: jdbc:hive2://hadoop.canhui.wang:10000/default
+
+  spark:
+    home: /usr/local/spark-2.4.4-bin-hadoop2.7
+
+  redis:
+    ip: 127.0.0.1
+    port: 6379
+
+  ranger:
+    url: http://hadoop.canhui.wang:6080
+    user: admin
+    pwd: admin
+    service:
+      hdfs: hadoop_hdfs
+      hive: hadoop_hive

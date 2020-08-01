@@ -1,0 +1,10 @@
+.idea
+.gradle
+out
+gen
+**/target
+**/*.iml
+**/.project
+**/.settings
+*/.classpath
+*/.factorypath
